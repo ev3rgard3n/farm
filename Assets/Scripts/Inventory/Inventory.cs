@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Inventory : MonoBehaviour
 {
     private List<Slot> _slots = new ();
+    public static Slot InventorySelected = null;
 
     private void Start()
     {
@@ -16,8 +16,9 @@ public class Inventory : MonoBehaviour
 
         foreach (Slot slot in _slots)
         {
-            slot.FillSlot(Player.player_items[i]);
+            slot.FillSlot(i);
             i++;
         }
     }
+
 }

@@ -1,6 +1,8 @@
 public class Item
 {
     public static int TYPEFOOD = 1;
+    public static int TYPEHOE = 2;
+    public static int TYPEAXE = 3;
 
     public string name;
     public string imageUrl;

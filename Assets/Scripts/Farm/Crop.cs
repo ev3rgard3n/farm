@@ -13,7 +13,7 @@ public class Crop : MonoBehaviour
     private readonly int  _stepsEmpty = 0;
     private readonly int _stepsGrows = 1;
     private readonly int _stepsReady = 2;
-    private readonly int _stepsPlow = 3;
+    private readonly int _stepsHoe = 3;
     private bool _readyForAction;
 
 
@@ -28,8 +28,8 @@ public class Crop : MonoBehaviour
 
     private void OnMouseDown()
     {
-
         Item item = Player.GetHandItem();
+        Debug.Log($"{item.name}, {item.type}");
 
         if (_readyForAction)
         {
@@ -37,8 +37,10 @@ public class Crop : MonoBehaviour
             {
                 if (item.type == Item.TYPEFOOD)
                 {
+                    Player.RemoveItem();
                     _step = _stepsGrows;
                     cropItem = item;
+                    cropItem.count = 2;
                     _seedSprite.sprite = Resources.Load<Sprite>("Food/seeds");
                     StartCoroutine(Grow());
                 }
@@ -47,11 +49,20 @@ public class Crop : MonoBehaviour
             {
                 _productSprite.sprite = Resources.Load<Sprite>("Food/empty");
                 _seedSprite.sprite = Resources.Load<Sprite>("Food/extraDirt");
-                item.count = 2;
-                Player.CheckIfItemExist(item);
-            }
-        }
+                Player.CheckIfItemExist(cropItem);
 
+                _step = _stepsHoe;
+            }
+            else if (_step == _stepsHoe)
+            {
+                if (item.type == Item.TYPEHOE)
+                {
+                    _seedSprite.sprite = Resources.Load<Sprite>("Food/empty");
+                    _step = _stepsEmpty;
+                }
+            }
+            
+        }
     }
 
     private IEnumerator Grow()

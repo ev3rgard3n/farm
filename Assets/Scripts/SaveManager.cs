@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -9,16 +7,23 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        Instance = this;
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public void Set(string key, string value)
+    public static void Set(string key, string value)
     {
         PlayerPrefs.SetString(key, value);
     }
 
-    public string Load(string key)
+    public static string Load(string key)
     {
         if (PlayerPrefs.HasKey(key))
         {

@@ -13,8 +13,6 @@ public class PlayerMoving : MonoBehaviour
     private Rigidbody2D _playerRigidbody;
     private SpriteRenderer _playerSprite;
 
-    public SaveManager SaveManager;
-
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
