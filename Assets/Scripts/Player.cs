@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            /*player_items.Add(item);*/
             addItemToInventory(item);
         }
         

@@ -9,6 +9,7 @@ public class PlayerMoving : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private Sprite _mrFront, _mrBack, _mrLeft, _mrRight;
 
+    public float x, y;
     private Vector2 _position;
     private Rigidbody2D _playerRigidbody;
     private SpriteRenderer _playerSprite;
@@ -20,6 +21,35 @@ public class PlayerMoving : MonoBehaviour
 
         ChangeSprite(_mrFront);
 
+        x = 0;
+        y = 0;
+
+    }
+    
+    public void ButtonUp(){
+        Debug.Log("U");
+        y+=1;
+    }
+
+    public void ButtonDown(){
+        Debug.Log("D");
+        y-=1;
+    }
+
+    public void ButtonLeft(){
+        Debug.Log("L");
+        x -= 1;
+    }
+    
+    public void ButtonRight(){
+        Debug.Log("R");
+        x += 1;
+    }
+
+    public void ButtonStop(){
+        Debug.Log("Stop");
+        x = 0;
+        y = 0;
     }
 
     private void ChangeSprite(Sprite sprite)
@@ -29,8 +59,9 @@ public class PlayerMoving : MonoBehaviour
 
     private void Update()
     {
-        _position.x = Input.GetAxis("Horizontal");
-        _position.y = Input.GetAxis("Vertical");
+         _position.x = Input.GetAxis("Horizontal");
+         _position.y = Input.GetAxis("Vertical");
+        /*_position = new Vector2(x, y);*/
 
     }
 

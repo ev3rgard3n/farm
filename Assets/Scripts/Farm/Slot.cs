@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -23,6 +22,7 @@ public class Slot : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 
         _slotImage = GetComponent<Image>();
         Image[] images = GetComponentsInChildren<Image>();
+
         if (images.Length > 1)
         {
             _itemImage = images[1];

@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         _slots = GetComponentsInChildren<Slot>().ToList();
+        Debug.Log($"123131 {_slots.Count}");
 
         int i = 0;
 

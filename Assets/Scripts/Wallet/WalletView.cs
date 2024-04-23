@@ -19,6 +19,6 @@ public class WalletView : MonoBehaviour
     public void DisplayAmount()
     {
         float money = _wallet.Money;
-        _amountText.text = money.ToString();
+        _amountText.text = money.ToString() + "$";
     }
 }

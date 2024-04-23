@@ -1,0 +1,4 @@
+repository "funny farm@ev3rgard3n@cloud"
+  path "/"
+    br "/main"
+    co "/main"

@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,15 +13,11 @@ public class Wallet : MonoBehaviour
         LoadBalance();
     }
 
-
-    public void MoneyAddTest()
+    public void AddMoneyTest()
     {
-        AddMoney(10);
-    }
-
-    public void MoneySpendTest()
-    {
-        TryToSpend(10);
+        Money += 10;
+        AmountChanged?.Invoke();
+        SaveManager.Set("Money", Money.ToString());
     }
 
     private void LoadBalance()
@@ -44,7 +39,10 @@ public class Wallet : MonoBehaviour
     }
 
     public bool TryToSpend(int price) 
-    { 
+    {
+        Debug.Log($"Money {Money}");
+        Debug.Log($"price {price}");
+
         if (price <= Money)
         {
             Money -= price;
