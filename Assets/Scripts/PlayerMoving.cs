@@ -1,8 +1,4 @@
-using JetBrains.Rider.Unity.Editor;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class PlayerMoving : MonoBehaviour
 {
@@ -21,8 +17,6 @@ public class PlayerMoving : MonoBehaviour
 
         ChangeSprite(_mrFront);
 
-        x = 0;
-        y = 0;
 
     }
     
@@ -59,9 +53,9 @@ public class PlayerMoving : MonoBehaviour
 
     private void Update()
     {
-         _position.x = Input.GetAxis("Horizontal");
-         _position.y = Input.GetAxis("Vertical");
-        /*_position = new Vector2(x, y);*/
+        /* _position.x = Input.GetAxis("Horizontal");
+         _position.y = Input.GetAxis("Vertical");*/
+        _position = new Vector2(x, y);
 
     }
 
@@ -76,6 +70,8 @@ public class PlayerMoving : MonoBehaviour
         else if (_position.y >= 0)
             ChangeSprite(_mrFront);
         _playerRigidbody.MovePosition(_playerRigidbody.position + _position * _speed * Time.fixedDeltaTime);
+
+
     }
 
 

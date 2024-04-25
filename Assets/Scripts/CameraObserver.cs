@@ -6,7 +6,7 @@ public class CameraObserver : MonoBehaviour
 {
     [SerializeField] private Transform _target;
     [SerializeField] private float _smoothTime = 0.25f;
-    [SerializeField] private Vector3 _offset = new Vector3(0f, 0f, -30f);
+    [SerializeField] private Vector3 _offset = new(0f, 0f, -30f);
 
     private Vector3 _velocity = Vector3.zero;
 

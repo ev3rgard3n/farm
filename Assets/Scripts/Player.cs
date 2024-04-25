@@ -2,19 +2,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Diagnostics;
+using System;
 
 public class Player : MonoBehaviour
 {
+    public int Level { get; private set; } = 0;
     [SerializeField] private int _emptyItemCountDefault=16;
     public static List<Item> player_items = new ();
 
+
+    public event Action LevelChanged;
+    
+
+    public void LevelPlus1()
+    {
+        Level += 1;
+
+        LevelChanged?.Invoke();
+    }
     private void Start()
     {
-        player_items.Add(SetEmptyValueToItem());
-        player_items.Add(new Item("carrot", "Food/carrot", Item.TYPEFOOD, 1, 10, 1, 5f));
-        player_items.Add(new Item("Axe", "Tools/Axe", Item.TYPEAXE, 0, 0, 0, 0f));
-        player_items.Add(new Item("Hoe", "Tools/Hoe", Item.TYPEHOE, 0, 0, 0, 0f));
-
+        player_items = SaveManager.LoadInventory();
 
         for (int i = 0; i <= _emptyItemCountDefault; i++)
         {

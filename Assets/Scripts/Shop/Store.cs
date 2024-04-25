@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Store : MonoBehaviour
 {
-    private bool _storeIsEmpty = true;
     
-
     public static List<Item> StoreItems = new();
     private List<StoreSlot> _storeSlots = new();
 

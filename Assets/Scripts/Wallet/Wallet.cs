@@ -17,23 +17,19 @@ public class Wallet : MonoBehaviour
     {
         Money += 10;
         AmountChanged?.Invoke();
-        SaveManager.Set("Money", Money.ToString());
+        SaveManager.SaveAllParams();
     }
 
     private void LoadBalance()
-    {
-        string loadedMoney = SaveManager.Load("Money");
-
-        Debug.Log(loadedMoney);
-
-        Money = string.IsNullOrEmpty(loadedMoney) ? 10 : int.Parse(loadedMoney);
+    { 
+        Money = SaveManager.LoadMoney();
         AmountChanged?.Invoke();
     }
     public void AddMoney(int amount)
     {
         if (amount >= 0) Money += amount;
 
-        SaveManager.Set("Money", Money.ToString());
+        SaveManager.SaveAllParams();
 
         AmountChanged?.Invoke();
     }
@@ -46,7 +42,7 @@ public class Wallet : MonoBehaviour
         if (price <= Money)
         {
             Money -= price;
-            SaveManager.Set("Money", Money.ToString());
+            SaveManager.SaveAllParams();
             AmountChanged?.Invoke();
             return true;
         }
